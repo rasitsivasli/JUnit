@@ -1,3 +1,5 @@
+package Dersler;
+
 public class Jubiter_YeniMetodlar {
     /*
 @Disabled: Bu annotasyon, bir test metodu veya test sınıfının geçici olarak devre dışı bırakılmasını sağlar.
