@@ -1,6 +1,6 @@
-package Mentoring;
+package Mentoring.Tag1ve2;
 
-import org.junit.Assert;
+
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
