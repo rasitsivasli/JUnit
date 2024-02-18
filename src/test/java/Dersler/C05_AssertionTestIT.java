@@ -25,11 +25,12 @@ public class C05_AssertionTestIT {
     static WebDriver driver;
 
     @BeforeAll
-    public static void beforeAll(){
+    public static void beforeAll() throws InterruptedException {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://www.amazon.com/");
+        Thread.sleep(3000);
         if (driver.findElement(By.xpath("//*[.='Try different image']")).isDisplayed()){
             driver.findElement(By.xpath("//*[.='Try different image']")).click();
         }
