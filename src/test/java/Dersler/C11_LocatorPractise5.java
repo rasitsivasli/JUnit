@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C11_LocatorPractise5 {
+ public class C11_LocatorPractise5 {
     //Go to URL: //Go to URL: https://opensource-demo.orangehrmlive.com/
 //Locate the username, password, login button using absolute xpath and relative xpath.
     static WebDriver driver;
@@ -32,8 +32,12 @@ public class C11_LocatorPractise5 {
         WebElement userName = driver.findElement(By.xpath("//html/body/div[1]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input"));
         WebElement password = driver.findElement(By.xpath("//html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/div[2]/input"));
         WebElement login = driver.findElement(By.xpath("//html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button"));
-
-
     }
+     @Test
+     public void tes2() throws InterruptedException {
+         WebElement userName = driver.findElement(By.xpath("//*[@name=\"username\"]"));
+         WebElement password = driver.findElement(By.xpath("//*[@name=\"password\"]"));
+         WebElement login = driver.findElement(By.xpath("//*[@type=\"submit\"]"));
+     }
 }
 

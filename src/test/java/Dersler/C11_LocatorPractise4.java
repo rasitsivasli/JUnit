@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
@@ -26,7 +27,15 @@ public class C11_LocatorPractise4 {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--accept-cookies");//çerezlerei kabul etmek için
+        options.addArguments("--disable-popup-blocking");//Pop-up pencereleri engellemek için
+        driver = new ChromeDriver(options);// ChromeOptions'u driver'ımıza tanıtıyoruz.
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.navigate().to("https://testpages.herokuapp.com/styled/index.html");
+
     }
     @AfterAll
     public static void tearDown() throws InterruptedException {

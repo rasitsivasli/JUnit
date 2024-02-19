@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
@@ -26,7 +27,7 @@ public class task1 {
 //10. Select checkbox 'Sign up for our newsletter!'
 //11. Select checkbox 'Receive special offers from our partners!'
 
-//12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
+    //12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
 //13. Click 'Create Account button'
 //14. Verify that 'ACCOUNT CREATED!' is visible
 //15. Click 'Continue' button
@@ -34,14 +35,16 @@ public class task1 {
 //17. Click 'Delete Account' button
 //18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
     static WebDriver driver;
-    static int mailNummer=26;
+    static int mailNummer = 30;
+
     @BeforeAll
-    public static void beforeAll(){
+    public static void beforeAll() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.navigate().to("http://automationexercise.com");
     }
+
     @Test
     @Order(1)
     public void test1() throws InterruptedException {
@@ -49,6 +52,7 @@ public class task1 {
         vertify.isDisplayed();
         //Thread.sleep(2000);
     }
+
     @Test
     @Order(2)
     public void test2() throws InterruptedException {
@@ -56,6 +60,7 @@ public class task1 {
         login.click();
         //Thread.sleep(2000);
     }
+
     @Test
     @Order(3)
     public void test3() throws InterruptedException {
@@ -63,6 +68,7 @@ public class task1 {
         assertEquals(newUserSignup.getText(), "New User Signup!");
         //Thread.sleep(2000);
     }
+
     @Test
     @Order(7)
     public void test4() throws InterruptedException {
@@ -71,17 +77,18 @@ public class task1 {
         //Thread.sleep(2000);
         WebElement mail = driver.findElement(By.xpath("//input[@data-qa='signup-email']"));
 
-        mail.sendKeys("rasit"+mailNummer+++"@gmail.com");
+        mail.sendKeys("rasit" + mailNummer++ + "@gmail.com");
         //Thread.sleep(2000);
         WebElement signUp = driver.findElement(By.xpath("//button[@data-qa=\"signup-button\"]"));
         signUp.click();
         //Thread.sleep(2000);
     }
+
     @Test
     @Order(8)
     public void test5() throws InterruptedException {
         WebElement enterAccount = driver.findElement(By.xpath("//b[text()='Enter Account Information']"));
-        assertEquals("ENTER ACCOUNT INFORMATION",enterAccount.getText());
+        assertEquals("ENTER ACCOUNT INFORMATION", enterAccount.getText());
         //Thread.sleep(2000);
     }
 
@@ -92,22 +99,22 @@ public class task1 {
         gender.click();
         //Thread.sleep(2000);
         WebElement passWord = driver.findElement(By.xpath("//input[@id=\"password\"]"));
-        passWord.sendKeys("1234"+Keys.ENTER);
+        passWord.sendKeys("1234" + Keys.ENTER);
         //Thread.sleep(2000);
         WebElement day = driver.findElement(By.xpath("//select[@id=\"days\"]"));
-        day.sendKeys("19"+Keys.ENTER);
+        day.sendKeys("19" + Keys.ENTER);
         WebElement month = driver.findElement(By.xpath("//select[@id=\"months\"]"));
-        month.sendKeys("April"+Keys.ENTER);
+        month.sendKeys("April" + Keys.ENTER);
         WebElement year = driver.findElement(By.xpath("//select[@id=\"years\"]"));
-        year.sendKeys("1983"+Keys.ENTER);
+        year.sendKeys("1983" + Keys.ENTER);
         WebElement newsLetter = driver.findElement(By.xpath("//*[@id=\"newsletter\"]"));
         newsLetter.click();
         WebElement partners = driver.findElement(By.xpath("//*[@id=\"optin\"]"));
         partners.click();
 
-        WebElement firstName= driver.findElement(By.xpath("//*[@id=\"first_name\"]"));
+        WebElement firstName = driver.findElement(By.xpath("//*[@id=\"first_name\"]"));
         firstName.sendKeys("rasit");
-        WebElement lastName= driver.findElement(By.xpath("//*[@id=\"last_name\"]"));
+        WebElement lastName = driver.findElement(By.xpath("//*[@id=\"last_name\"]"));
         lastName.sendKeys("sivasli");
         WebElement adress = driver.findElement(By.xpath("//*[@id=\"address1\"]"));
         adress.sendKeys("Kaiserslautern");
@@ -124,17 +131,17 @@ public class task1 {
         WebElement creatAccount = driver.findElement(By.xpath("//button[@data-qa=\"create-account\"]"));
         creatAccount.submit();
         WebElement verify = driver.findElement(By.xpath("//b[text()='Account Created!']"));
-        assertEquals("ACCOUNT CREATED!",verify.getText());
+        assertEquals("ACCOUNT CREATED!", verify.getText());
         WebElement contunie = driver.findElement(By.xpath("//*[@data-qa=\"continue-button\"]"));
         contunie.click();
-
         WebElement userVerfy = driver.findElement(By.partialLinkText("rasit"));
         assertTrue(userVerfy.getText().contains("rasit"));
         WebElement deleteAccount = driver.findElement(By.xpath("//a[@href='/delete_account']"));
         deleteAccount.click();
         WebElement verifyDelete = driver.findElement(By.xpath("//b[text()='Account Deleted!']"));
-        assertEquals("ACCOUNT DELETED!",verifyDelete.getText());
+        assertEquals("ACCOUNT DELETED!", verifyDelete.getText());
     }
+    
     @AfterAll
     public static void tearDown() throws InterruptedException {
         driver.quit();
