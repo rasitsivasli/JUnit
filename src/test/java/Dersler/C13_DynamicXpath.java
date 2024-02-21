@@ -84,11 +84,11 @@ public class C13_DynamicXpath {
         userNameBox.sendKeys("abc@gmail.com");
         Thread.sleep(3000);
        WebElement passWordBox = driver.findElement
-                (By.xpath("//div[@id='reg_pages_msg']/preceding-sibling::div//input[@id='pass']"));
+                (By.xpath("//div[@id='reg_pages_msg']/preceding-sibling::div//input[@id='pass']"));// preceding-sibling ust taraf anlamina geliyor.
         passWordBox.sendKeys("1234");
         Thread.sleep(3000);
         WebElement loginButton = driver.findElement
-                (By.xpath("//div[@class='_6ltg']/button"));
+                (By.xpath("//div[@class='_6ltg']/button"));// buradaki "/" 1. derecedeki cocuk anlamina geliyor
     }
 
     }
