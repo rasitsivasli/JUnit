@@ -38,7 +38,7 @@ public class C22_DropDown3 {
 
     @AfterAll
     public static void tearDown() {
-        //driver.quit();
+        driver.quit();
     }
 
 
@@ -47,6 +47,16 @@ public class C22_DropDown3 {
         WebElement element = driver.findElement(By.xpath("//*[@id=\"cars\"]"));
         Select select = new Select(element);
         assertTrue(select.isMultiple());
+        select.selectByValue("opel");
+        Thread.sleep(3000);
+        select.deselectByValue("opel");
+        Thread.sleep(3000);
+        select.selectByValue("saab");
+        Thread.sleep(3000);
+        select.deselectByValue("saab");
+        Thread.sleep(3000);
+        select.deselectAll();
+        Thread.sleep(3000);
 
 
     }

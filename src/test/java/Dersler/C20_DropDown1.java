@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.time.Duration;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class C20_DropDown1 {
@@ -83,6 +84,7 @@ public class C20_DropDown1 {
         assertTrue(verify.isDisplayed());//2. yol
         WebElement home = driver.findElement(By.xpath("//span[text()='Home']"));
         home.click();
+        //assertTrue(home.isSelected());
         WebElement youHaveSelected = driver.findElement(By.xpath("//*[contains(text(),'You have selected :')]"));
         System.out.println("youHaveSelected.getText() = " + youHaveSelected.getText());
 
