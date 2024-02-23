@@ -49,6 +49,7 @@ public class ImplicitWait {
 
         driver.manage().window().maximize();
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        Thread.sleep(3000);
         WebElement button = driver.findElement(By.xpath("//button[@type='submit']"));
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(button));

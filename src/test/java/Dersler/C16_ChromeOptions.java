@@ -36,7 +36,6 @@ disable-infobars: Chrome'un "Chrome otomatik yazılım tarafından kontrol edili
         options.addArguments("start-maximized");
         options.addArguments("disable-popup-blocking");
         options.addArguments("disable-cookies");
-
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("http://www.bestbuy.com");
