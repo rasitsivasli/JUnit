@@ -1,4 +1,4 @@
-package Training;
+package Training.T02_XPath;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,4 +1,4 @@
-package HOMEWORK.Alerts;
+package HOMEWORK.H02_Alerts;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

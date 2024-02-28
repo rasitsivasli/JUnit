@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utils.TestBase;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class C36_Actions extends TestBase {
@@ -28,9 +30,39 @@ perform() KULLANMAYI UNUTMAYIN!
     //Verify the texts that appear after the buttons are operated.
 
     @Test
-    public void test(){
-        driver.get("https://demoqa.com/buttons");
+    public void test() {
 
+        driver.get("https://demoqa.com/buttons");
+        WebElement einwllig = driver.findElement(By.xpath("//p[.='Einwilligen']"));
+        einwllig.click();
+        WebElement doubleClickBtn = driver.findElement(By.id("doubleClickBtn"));
+        WebElement rightClickBtn = driver.findElement(By.id("rightClickBtn"));
+        WebElement clickMe = driver.findElement(By.xpath("//button[.='Click Me']"));
+
+        //1.yol
+        /*actions.doubleClick(doubleClickBtn).perform();
+        actions.contextClick(rightClickBtn).perform();
+        actions.click(clickMe).perform();*/
+
+        // kisa yol
+        actions.doubleClick(doubleClickBtn)
+                .contextClick(rightClickBtn)
+                .click(clickMe)
+                .perform();
+
+        //3.yol
+       /* actions.moveToElement(doubleClickBtn)
+                .pause(Duration.ofSeconds(2))
+                .doubleClick(doubleClickBtn).
+                pause(Duration.ofSeconds(2))
+                .click(clickMe).perform();*/
+
+
+        // perform en sona geliyor
+        /*actions.doubleClick(doubleClickBtn);
+        actions.contextClick(rightClickBtn);
+        actions.click(clickMe);
+        actions.perform();*/
 
     }
 }

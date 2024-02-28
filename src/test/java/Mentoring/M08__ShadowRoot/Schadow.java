@@ -1,13 +1,10 @@
-package HOMEWORK.ShadowRoot;
+package Mentoring.M08__ShadowRoot;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import utils.TestBase;
-
-import java.time.Duration;
 
 public class Schadow extends TestBase {
     /*
@@ -19,12 +16,16 @@ public class Schadow extends TestBase {
     //!!!!!!!!! Shadow DOM içerisinde sadece cssSelector çalışır !!!!!!!!!!!
 
     @Test
-    public void withGetShadowRootMethod(){
+    public void withGetShadowRootMethod() throws InterruptedException {
         driver.get("https://www.teknosa.com/");
+        Thread.sleep(3000);
         WebElement target = driver.findElement(By.tagName("efilli-layout-dynamic")).getShadowRoot()
                 .findElement(By.cssSelector("div[id='b7bca45b-4b2f-4bf7-a04a-c5b0aec83d7e']"));
         target.click();
+
+
         //2.yol
+
       /*  WebElement schadowHost =  driver.findElement(By.tagName("efilli-layout-dynamic"));
         SearchContext schadowRoot = schadowHost.getShadowRoot();
         WebElement acceptButton = schadowRoot.findElement(By.cssSelector("div[id='b7bca45b-4b2f-4bf7-a04a-c5b0aec83d7e']"));

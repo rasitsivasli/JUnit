@@ -4,8 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
+import utils.TestBase;
 
-public class C33_WindowHandle1 {
+import java.util.List;
+import java.util.Set;
+
+import static org.openqa.selenium.WindowType.TAB;
+import static org.openqa.selenium.WindowType.WINDOW;
+
+public class C33_WindowHandle1 extends TestBase {
     // driver.getWindowHandle(); -> aktif olan pencere ve sekmemizin window handle (id) degerini bize verir.
     // driver.getWindowHandles(); -> tum pencere ve sekmelerin window handle (id) lerini bir Set olarak bize dondurur.
     // driver.switchTo().window(id); -> window handle degeri id olan pencere veya sekmeye gecis yapmamizi saglar.
@@ -21,8 +28,28 @@ public class C33_WindowHandle1 {
 
     @Test
     public void test1() throws InterruptedException {
+        //Open https://www.amazon.com/ in the open tab
+        driver.get("https://www.amazon.com/");
+
+        //Create new tab
+        driver.switchTo().newWindow(TAB);
+
+        //Open https://www.linkedin.com/ in the open tab
+        driver.get("https://www.linkedin.com/");
+
+        //Create new window
+        driver.switchTo().newWindow(WINDOW);
+
+        //Open https://opensource-demo.orangehrmlive.com/web/index.php/auth/login in the window that opens
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
+
+        Set<String> Ids = driver.getWindowHandles();
+        System.out.println(Ids);
+
+
 
     }
 
-    static WebDriver driver;
+
 }

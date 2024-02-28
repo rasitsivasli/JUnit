@@ -1,4 +1,4 @@
-package Training;
+package Training.T02_XPath;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
-public class xpath {
+public class xpath2 {
     /*As we have the visible text “Log in to Twitter” available with us
     , we would make use of the following XPath functions to uniquely identify the element.
 
@@ -25,10 +25,13 @@ public class xpath {
     static WebDriver driver;
     @BeforeAll
     public static void beforeAll() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--accept-cookies");//çerezlerei kabul etmek için
+        options.addArguments("--disable-popup-blocking");//Pop-up pencereleri engellemek için
+        options.addArguments("start-maximized");
+        driver = new ChromeDriver(options);// ChromeOptions'u driver'ımıza tanıtıyoruz.
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.get("http://www.automationpractice.pl/index.php");
+        driver.get("https://www.teknosa.com/");
        /* if (driver.findElement(By.xpath("//*[contains(text(),'Alle Cookies akzeptieren')]")).isDisplayed()){
             driver.findElement(By.xpath("//*[contains(text(),'Alle Cookies akzeptieren')]")).click();
         }*/
@@ -39,15 +42,10 @@ public class xpath {
     }
     @Test
     public void test(){
-        WebElement anmelden1= driver.findElement(By.xpath("//a[@title='Log in to your customer account']"));
-        anmelden1.click();
-        WebElement email= driver.findElement(By.xpath("//*[@id=\"email_create\"]"));
-        email.sendKeys("sdfsdf",Keys.ENTER);
-        WebElement verify= driver.findElement(By.xpath("//*[@id='create_account_error']"));
-        WebElement verify2= driver.findElement(By.xpath("//li[contains(text(),\"Invalid email address\")]"));
-        WebElement verify3= driver.findElement(By.xpath("//li[.=\"Invalid email address.\"]"));
-        System.out.println("Text : "+verify3.getText());
-
+        WebElement such= driver.findElement(By.xpath("//*[@id=\"search-input\"]"));
+        such.sendKeys("oppo",Keys.ENTER);
+        WebElement sonuc= driver.findElement(By.xpath("//div[contains(text(),'278 Sonuç')]"));
+        System.out.println("sonuc.getText() = " + sonuc.getText());
 
     }
 

@@ -1,4 +1,4 @@
-package Training;
+package Training.T01_Methodlar;
 
 
 import org.junit.jupiter.api.AfterAll;

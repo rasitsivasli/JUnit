@@ -1,4 +1,4 @@
-package HOMEWORK.Locater;
+package HOMEWORK.H01_Locater;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
