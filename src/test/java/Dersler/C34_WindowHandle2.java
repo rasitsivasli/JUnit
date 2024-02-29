@@ -1,12 +1,9 @@
 package Dersler;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WindowType;
 import utils.TestBase;
 
-import static org.openqa.selenium.WindowType.TAB;
-import static org.openqa.selenium.WindowType.WINDOW;
-
+import static org.openqa.selenium.WindowType.*;
 
 public class C34_WindowHandle2 extends TestBase {
     // 1- browser ac
@@ -19,22 +16,18 @@ public class C34_WindowHandle2 extends TestBase {
     @Test
     public void test1() throws InterruptedException {
         String mainHandle = driver.getWindowHandle();
-        System.out.println("mainHandle = " + mainHandle);
-
         // 2- yeni sekme olustur
         driver.switchTo().newWindow(TAB);
-        String handelTab = driver.getWindowHandle();
-        System.out.println("handelTab = " + handelTab);
+        String handleTab = driver.getWindowHandle();
 
         // 3- yeni pencere olustur
         driver.switchTo().newWindow(WINDOW);
         String handleWindow = driver.getWindowHandle();
-        System.out.println("handelWindow = " + handleWindow);
 
         // 4- 2. sekmede https://www.linkedin.com/ ac
-        driver.switchTo().window(handelTab);
-        driver.get("https://www.linkedin.com/ ");
-        System.out.println(driver.getTitle()); // ispat icin yaptik
+        driver.switchTo().window(handleTab);
+        driver.get("https://www.linkedin.com/");
+        System.out.println(driver.getTitle());//sayfayı açtığını ispat etmek için
 
         // 5- son pencerede https://opensource-demo.orangehrmlive.com/web/index.php/auth/login sitesini ac
         driver.switchTo().window(handleWindow);
@@ -45,5 +38,9 @@ public class C34_WindowHandle2 extends TestBase {
         driver.switchTo().window(mainHandle);
         driver.get("https://www.amazon.com/");
         System.out.println(driver.getTitle());
+
+        System.out.println(mainHandle);
+        System.out.println(handleTab);
+        System.out.println(handleWindow);
     }
 }

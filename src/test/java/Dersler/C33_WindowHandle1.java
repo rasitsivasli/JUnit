@@ -1,16 +1,8 @@
 package Dersler;
 
 import org.junit.jupiter.api.Test;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WindowType;
 import utils.TestBase;
-
-import java.util.List;
-import java.util.Set;
-
-import static org.openqa.selenium.WindowType.TAB;
-import static org.openqa.selenium.WindowType.WINDOW;
+import org.openqa.selenium.WindowType;
 
 public class C33_WindowHandle1 extends TestBase {
     // driver.getWindowHandle(); -> aktif olan pencere ve sekmemizin window handle (id) degerini bize verir.
@@ -32,24 +24,15 @@ public class C33_WindowHandle1 extends TestBase {
         driver.get("https://www.amazon.com/");
 
         //Create new tab
-        driver.switchTo().newWindow(TAB);
+        driver.switchTo().newWindow(WindowType.TAB);
 
         //Open https://www.linkedin.com/ in the open tab
         driver.get("https://www.linkedin.com/");
 
         //Create new window
-        driver.switchTo().newWindow(WINDOW);
+        driver.switchTo().newWindow(WindowType.WINDOW);
 
         //Open https://opensource-demo.orangehrmlive.com/web/index.php/auth/login in the window that opens
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
-
-        Set<String> Ids = driver.getWindowHandles();
-        System.out.println(Ids);
-
-
-
     }
-
-
 }

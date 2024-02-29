@@ -2,15 +2,12 @@ package Dersler;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import utils.TestBase;
 
-
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
 
 import static org.openqa.selenium.WindowType.TAB;
@@ -31,11 +28,10 @@ public class C35_WindowHandle3 extends TestBase {
 
         // 2- acilan sekmede https://www.amazon.com/ ac
         driver.get("https://www.amazon.com/");
-        driver.findElement(By.xpath("//a[.='Try different image']")).click();
 
         // 3- yeni sekme olustur
         driver.switchTo().newWindow(TAB);
-        String handleTap = driver.getWindowHandle();
+        String handleTab = driver.getWindowHandle();
 
         // 4- acilan sekmede https://www.linkedin.com/ ac
         driver.get("https://www.linkedin.com/");
@@ -49,18 +45,13 @@ public class C35_WindowHandle3 extends TestBase {
 
         // 7- amazon sekmesine gecerek arama kismina 'Amazon sekmesini buldun' yaz
         driver.switchTo().window(mainHandle);
-        //driver.findElement(By.xpath("//a[.='Try different image']")).click();
         WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
-
         searchBox.sendKeys("Amazon sekmesini buldun");
     }
-
     @Test
     public void test2() throws InterruptedException {
-
         // 2- acilan sekmede https://www.amazon.com/ ac
         driver.get("https://www.amazon.com/");
-        driver.findElement(By.xpath("//a[.='Try different image']")).click();
 
         // 3- yeni sekme olustur
         driver.switchTo().newWindow(TAB);
@@ -76,21 +67,21 @@ public class C35_WindowHandle3 extends TestBase {
 
         // 7- amazon sekmesine gecerek arama kismina 'Amazon sekmesini buldun' yaz
 
-        Set<String> windowhandleList = driver.getWindowHandles();
-        Iterator<String> iterator = windowhandleList.iterator();
+        //window handle ler arasi gecis yapmamiz gerek
+        //set objesi olusturmaliyiz.
+        Set<String> windowHanhleSet = driver.getWindowHandles();// getWindowHandles komutu "Set" döndürdüğü için Set'e atıyoruz.
 
-        while (iterator.hasNext()) {
-            String currentHandle = iterator.next();
-            driver.switchTo().window(currentHandle);
+        Iterator<String> i = windowHanhleSet.iterator();//Set'in içinde gezinebilmek için iterator object oluşturuyoruz.
 
-            if (driver.getTitle().contains("Amazon")){
+        while (i.hasNext()){//i.hasNext() ifadesi , i isimli bir nesnenin bir sonraki elemani olup olmadigini kontrol eder
+            String currentHandle = i.next();//i.next() ifadesi , i isimli bir nesnenin bir sonraki elemani bu degiskene atamaktadir.
+            driver.switchTo().window(currentHandle);//sırayla tüm windowHandle değerlerini kullanarak sekme ve pencerelerde dolaşıyoruz.
+
+            if(driver.getTitle().contains("Amazon")){//bu şart sağlanıyorsa Amazon sayfasının olduğu penceredeyiz demektir.
                 WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
-                searchBox.sendKeys("Amazon sekmesini buldun bravo");
-                break;
+                searchBox.sendKeys("Amazon sekmesini buldun BRAVO !!!");
+                break;//Amazon sayfasını bulduğunda diğer pencerelere gitmemesi için döngüyü kırıyoruz.
             }
         }
-
-
-
     }
 }

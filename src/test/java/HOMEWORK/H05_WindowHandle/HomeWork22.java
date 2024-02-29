@@ -18,39 +18,42 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomeWork22 extends TestBase {
     // https://www.hepsiburada.com/ adresine gidin
-// Sayfanın windowhandle değerini alın.
-// iphone kelimesini aratın
-// Sonuçlar arasından 3.ürünün fiyatını alın
-// Arama sonucunda ortaya çıkan tüm ürünleri teker teker tıklayın
-// Tüm sekmelerin windowhandle değerlerini alt alta yazdırın
-// Herbir ürün sekmesindeki title'ı yazdırın
-// Arama sonucundaki 3.ürünün fiyatının, aynı ürünün sekmesindeki fiyatla aynı olduğunu doğrulayın
-// Ana sayfada iken 3 saniye bekleyip tüm sekmeleri kapatın
+    // Sayfanın windowhandle değerini alın.
+    // iphone kelimesini aratın
+    // Sonuçlar arasından 3.ürünün fiyatını alın
+    // Arama sonucunda ortaya çıkan tüm ürünleri teker teker tıklayın
+    // Tüm sekmelerin windowhandle değerlerini alt alta yazdırın
+    // Herbir ürün sekmesindeki title'ı yazdırın
+    // Arama sonucundaki 3.ürünün fiyatının, aynı ürünün sekmesindeki fiyatla aynı olduğunu doğrulayın
+    // Ana sayfada iken 3 saniye bekleyip tüm sekmeleri kapatın
 
     @Test
     public void test2() throws InterruptedException {
 
         // https://www.hepsiburada.com/ adresine gidin
-        driver.get("https://www.hepsiburada.com/kampanyalar");
-        String mainHandle = driver.getWindowHandle();
-        System.out.println("mainHandle = " + mainHandle);
+        driver.get("https://www.hepsiburada.com/");
+        String firstHandle = driver.getWindowHandle();
+        System.out.println("firstHandle = " + firstHandle);
         if (driver.findElement(By.xpath("//*[.='Kabul et']")).isDisplayed()) {
             driver.findElement(By.xpath("//*[.='Kabul et']")).click();
         }
-        Thread.sleep(3000);
+        Thread.sleep(2000);
+        /*if (driver.findElement(By.xpath("//*[.='Consent']")).isDisplayed()) {
+            driver.findElement(By.xpath("//*[.='Consent']")).click();
+        }*/
 
-        // Sayfanın windowhandle değerini alın.
-        // iphone kelimesini aratın
-
-        WebElement searchBox = driver.findElement(By.xpath("//*[@aria-controls='react-autowhatever-1']"));
-        searchBox.sendKeys("iphone", Keys.ENTER);
-
-
+        Thread.sleep(2000);
+        WebElement searchbox1= driver.findElement(By.xpath("//div[@class='searchBoxOld-yDJzsIfi_S5gVgoapx6f']"));
+        searchbox1.click();
+        WebElement searchbox2= driver.findElement(By.xpath("//input[@type='text']"));
+        searchbox2.sendKeys("iphone"+ Keys.ENTER);
+        Thread.sleep(2000);
 
        // Sonuçlar arasından 3.ürünün fiyatını alın
 
         WebElement preis = driver.findElement(By.xpath("(//div[@data-test-id='price-current-price'])[3]"));
-        System.out.println("preis.getText() = " + preis.getText());
+        String firstPreis = preis.getText().substring(0,6);
+
 
         // Arama sonucunda ortaya çıkan tüm ürünleri teker teker tıklayın
         List<WebElement> list = driver.findElements(By.xpath("//div[@data-test-id='price-current-price']"));
@@ -59,10 +62,7 @@ public class HomeWork22 extends TestBase {
         for (int i = 0; i < 4; i++) {
             list.get(i).click();
             windowhandleList = driver.getWindowHandles();
-
-
         }
-
         // Herbir ürün sekmesindeki title'ı yazdırın
         for (String currentHandle : windowhandleList) {
             driver.switchTo().window(currentHandle);
@@ -84,12 +84,12 @@ public class HomeWork22 extends TestBase {
             }
         }
         WebElement preis2 = driver.findElement(By.xpath("(//*[@id=\"offering-price\"]/span)[1]"));
-        System.out.println("preis2.getText() = " + preis2.getText());
+        String priceSecond = preis2.getText();
 
-       // assertEquals(preis.getText().substring(0,6), preis2.getText());
+        assertEquals(firstPreis, priceSecond);
 
         // Ana sayfada iken 3 saniye bekleyip tüm sekmeleri kapatın
-        driver.switchTo().window(mainHandle);
+        driver.switchTo().window(firstHandle);
         Thread.sleep(3000);
         driver.quit();
     }

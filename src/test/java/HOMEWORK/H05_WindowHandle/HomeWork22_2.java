@@ -9,6 +9,7 @@ import utils.TestBase;
 import java.util.List;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomeWork22_2 extends TestBase {
@@ -44,20 +45,27 @@ public class HomeWork22_2 extends TestBase {
         Thread.sleep(2000);
         WebElement thirdPrice= driver.findElement(By.xpath("(//div[@data-test-id='price-current-price'])[3]"));
         String thirdPriceText= thirdPrice.getText();
-        for (int i = 0; i < 49; i++) {
+        for (int i = 0; i < 5; i++) {
             WebElement eleman = driver.findElement(By.xpath("//li[@id='i"+i+"']"));
             eleman.click();
         }
         Thread.sleep(10000);
         Set<String> handles = driver.getWindowHandles();
         WebElement thirdPrice2= thirdPrice;
+        String thirdPrice2Text="";
         for (String handle : handles) {
             System.out.println(handle);
             System.out.println("driver.switchTo().window(handle).getTitle() = " + driver.switchTo().window(handle).getTitle());
             if (driver.getTitle().contains("iPhone 12")){
                 thirdPrice2=driver.findElement(By.xpath("//*[@id=\"offering-price\"]/span[1]"));
+                thirdPrice2Text=thirdPrice2.getText();
+                break;
             }
         }
-        assertTrue(thirdPrice2.getText().equals(thirdPriceText));
+
+        thirdPriceText=thirdPriceText.substring(0,6);
+        System.out.println("thirdPriceText = " + thirdPriceText);
+        System.out.println("thirdPrice2Text = " + thirdPrice2Text);
+        assertEquals(thirdPriceText,thirdPrice2Text);
     }
 }

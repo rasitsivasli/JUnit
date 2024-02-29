@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import utils.TestBase;
 
+import java.time.Duration;
+
 public class C41_KeyBoardActions extends TestBase {
     //sendKeys (): Metin kutusuna, text yazmak için kullanılır.
     //keyDown (): Bir tuşu basılı tutmak için kullanılır.
@@ -21,6 +23,15 @@ public class C41_KeyBoardActions extends TestBase {
     @Test
     public void testKeyboardActions() {
         driver.get("https://demoqa.com/auto-complete");
+        WebElement singleColor = driver.findElement(By.id("autoCompleteSingleContainer"));
+
+        actions
+                .click(singleColor)
+                .keyDown(Keys.SHIFT)
+                .sendKeys("e")
+                .keyUp(Keys.SHIFT)
+                .sendKeys("xceptional")
+                .perform();
 
     }
 }
