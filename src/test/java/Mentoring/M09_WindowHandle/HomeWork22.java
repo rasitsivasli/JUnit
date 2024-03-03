@@ -1,5 +1,6 @@
 package Mentoring.M09_WindowHandle;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import utils.TestBase;

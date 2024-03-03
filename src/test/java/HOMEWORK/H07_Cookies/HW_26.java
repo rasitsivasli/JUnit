@@ -1,14 +1,9 @@
-package HOMEWORK.M07_Cookies;
+package HOMEWORK.H07_Cookies;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebElement;
 import utils.TestBase;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class HW_26 extends TestBase {
     /*
@@ -44,7 +39,7 @@ public class HW_26 extends TestBase {
 
 
         //Delete Cookie.
-        driver.manage().deleteCookieNamed("expires");
+        driver.manage().deleteCookieNamed("_js_datr");
         for (Cookie cookie : driver.manage().getCookies()) {
             System.out.println("cookie = " + cookie);
         }
