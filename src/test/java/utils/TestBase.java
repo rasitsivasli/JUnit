@@ -1,17 +1,24 @@
 package utils;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
-    public abstract class TestBase {
+public abstract class TestBase {
         /*
      TestBase Class : Her test class’inda tekrar tekrar yazdigimiz setup ve teardown method’lari tekrar
     yazmaktan kurtulmak icin Java OOP konsept’I kullanarak olusturdugumuz bir class’dir
@@ -42,4 +49,30 @@ import java.time.Duration;
         public static void tearDown(){
             //driver.quit();
         }
+        public static void getFullScreenMethos(WebDriver driver){
+            TakesScreenshot ts = (TakesScreenshot) driver; // driver nesnesi, TakesScreenshot arayüzüne cast edilir.
+            File source = ts.getScreenshotAs(OutputType.FILE);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");
+            String date = LocalDateTime.now().format(formatter);
+
+            File destination = new File("./testOutput/ScreenShots/" + date + ".png");
+
+            try {
+                FileUtils.copyFile(source, destination);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    public static void getScreenShotMethod(WebElement element) {
+
+        File source = element.getScreenshotAs(OutputType.FILE);
+        String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
+        File destination = new File("./testOutput/ScreenShots/"+date+".png");
+
+        try {
+            FileUtils.copyFile(source, destination);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

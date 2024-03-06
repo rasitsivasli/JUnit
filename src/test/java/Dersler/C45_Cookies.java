@@ -45,7 +45,7 @@ public class C45_Cookies extends TestBase {
         for(Cookie c : cookiesUpdated){
             System.out.println(c);
         }
-        System.out.println("******************************************************************");
+        System.out.println("------------------------------------------------------------------");
 
         //Edit Cookie.
         Cookie editCookie = new Cookie("vegetable", "cucumber");

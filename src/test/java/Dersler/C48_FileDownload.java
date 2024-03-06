@@ -2,6 +2,8 @@ package Dersler;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import utils.TestBase;
 
@@ -29,8 +31,6 @@ public class C48_FileDownload extends TestBase {
 
         //    Verify if the file downloaded successfully.
         assertTrue(Files.exists(Paths.get(filePath)));
-
-
     }
 
     @Test//Bütün linklerin çalıştığını test et.
@@ -51,12 +51,14 @@ public class C48_FileDownload extends TestBase {
         List<WebElement> links = new ArrayList<>(driver.findElements(By.tagName("a")));
         System.out.println("links.size() = " + links.size());
 
+        JavascriptExecutor jsexecutor = ((JavascriptExecutor) driver);
         String downloadPath = "C:\\Users\\sivas\\Downloads\\";
 
         for (int i = 1; i < links.size()-1; i++) {
-            links.get(i).click();
-            String filePath = downloadPath + System.getProperty("file.separator") + links.get(i).getText();
-            Thread.sleep(2000);
+            System.out.println("Link Text = " + links.get(i).getText());
+            jsexecutor.executeScript("arguments[0].click();", links.get(i));
+            String filePath = downloadPath +"\\"+links.get(i).getText();
+            Thread.sleep(5000);
             assertTrue(Files.exists(Paths.get(filePath)));
         }
 
