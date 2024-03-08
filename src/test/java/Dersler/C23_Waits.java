@@ -83,8 +83,9 @@ public class C23_Waits {
         driver.get("https://seleniumatfingertips.wordpress.com/");
         //sadece sure tanimlandi, henuz aktif degil
         //15 saniye beklemek zorunda degil, eleman bulundugu anda isleme devam eder.
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+
         WebElement seleniumDriver = driver.findElement(By.xpath("//*[@id='menu-item-738']/a"));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
         wait.until(ExpectedConditions.elementToBeClickable(seleniumDriver));
         seleniumDriver.click();
     }
